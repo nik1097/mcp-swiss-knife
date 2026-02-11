@@ -10,7 +10,6 @@ from .config import (
     DETECTOR_WEIGHTS,
     RISK_SCORE_LOG_BASE,
     RISK_SCORE_MAX_MULTIPLIER,
-    RISK_SCORE_DIVISOR,
 )
 from .pattern_detector import DetectionResult
 from .semantic_detector import SemanticMatch
@@ -110,7 +109,7 @@ class RiskScorer:
                 1.0 + math.log(total_weight, RISK_SCORE_LOG_BASE),
                 RISK_SCORE_MAX_MULTIPLIER,
             )
-            overall_score = min(raw_score * finding_factor / RISK_SCORE_DIVISOR, 100.0)
+            overall_score = min(100, raw_score * finding_factor)
 
             # Determine risk level
             if overall_score >= 75 or severity_breakdown["critical"] > 0:

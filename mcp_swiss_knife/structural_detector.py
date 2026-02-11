@@ -6,7 +6,7 @@ import unicodedata
 from dataclasses import dataclass
 from typing import List
 
-from .config import MAX_TEXT_LENGTH, MAX_DESCRIPTION_LENGTH
+from .config import MAX_TEXT_LENGTH
 
 logger = logging.getLogger(__name__)
 
@@ -230,7 +230,7 @@ class StructuralDetector:
                         text=url,
                         anomaly_type="Suspicious URL",
                         severity="high",
-                        details=f"Found potential exfiltration endpoint",
+                        details="Found potential exfiltration endpoint",
                         confidence=0.8,
                     )
                 )
